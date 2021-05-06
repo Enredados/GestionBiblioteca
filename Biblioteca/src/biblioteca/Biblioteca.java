@@ -22,7 +22,8 @@ public class Biblioteca {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+            
+            String raiz = System.getProperty("user.dir");
         try {
             // TODO code application logic here
             String arrLibros[];
@@ -33,9 +34,9 @@ public class Biblioteca {
             String[] bib=new String[6];
             String[] usu=new String[5];
             
-            File libros2 = new File("C:\\Users\\jackr\\OneDrive - Pontificia Universidad Católica del Ecuador\\INGENIERÍA EN SISTEMAS\\CUARTO SEMESTRE\\PROGRAMACIÓN ORIENTADA A OBJETOS\\Biblioteca\\Biblioteca\\src\\biblioteca\\LIBROS.txt");
-            File bibliotecarios2 = new File("C:\\Users\\jackr\\OneDrive - Pontificia Universidad Católica del Ecuador\\INGENIERÍA EN SISTEMAS\\CUARTO SEMESTRE\\PROGRAMACIÓN ORIENTADA A OBJETOS\\Biblioteca\\Biblioteca\\src\\biblioteca\\BIBLIOTECARIOS.txt");
-            File usuarios2 = new File("C:\\Users\\jackr\\OneDrive - Pontificia Universidad Católica del Ecuador\\INGENIERÍA EN SISTEMAS\\CUARTO SEMESTRE\\PROGRAMACIÓN ORIENTADA A OBJETOS\\Biblioteca\\Biblioteca\\src\\biblioteca\\USUARIOS.txt");
+            File libros2 = new File(raiz+"\\LIBROS.txt");
+            File bibliotecarios2 = new File(raiz+"BIBLIOTECARIOS.txt");
+            File usuarios2 = new File(raiz+"\\USUARIOS.txt");
             
             arrLibros=desplegarArchivo(libros2);
             arrBibliotecario=desplegarArchivo(bibliotecarios2);
