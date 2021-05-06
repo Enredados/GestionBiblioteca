@@ -781,14 +781,15 @@ public class Prestamo extends javax.swing.JFrame {
 
     private void usuarioAceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioAceptar1ActionPerformed
         // TODO add your handling code here:
-        Libro nuevoLibro = new Libro();
+        
         String codigo = agregCedula1.getText();
         String titulo = agregNombre1.getText();
         String autor = agregApellido1.getText();
         String genero = agregTelefono1.getText();
-        nuevoLibro.agregarLibro(codigo, titulo, autor, genero);
+        Libro nuevoLibro = new Libro(codigo, titulo, autor, genero, true);
+        nuevoLibro.agregarLibro();
         JOptionPane.showMessageDialog(this, "LIBRO AGREGADO");
-        libros.add(new Libro(codigo, titulo, autor, genero, true));
+        libros.add(nuevoLibro);
     }//GEN-LAST:event_usuarioAceptar1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

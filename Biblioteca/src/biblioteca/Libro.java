@@ -113,6 +113,7 @@ public class Libro {
         }
     }
 
+
     public String obtenerCodigo() {
         return this.codigo;
     }
@@ -133,32 +134,89 @@ public class Libro {
         return new String[]{codigo, autor, titulo, String.valueOf(disponibilidad)};
     }
     
-    public boolean verificarCodigo()
+    public void verificarCodigo()
     {
         if(codigo.length() < 25)
         {
             while(codigo.length() != 25){
                 codigo += " ";
             }
-            return true;
         }
         else
         {
-            return false;
+             codigo.substring(0,25);
         }
+        
+    }
+    public void verificarTitulo()
+    {
+        if(titulo.length() < 100)
+        {
+            while(titulo.length() != 100){
+                titulo += " ";
+            }
+        }
+        else
+        {
+            titulo.substring(0,100);
+        }
+        
+    }
+    public void verificarAutor()
+    {
+        if(autor.length() < 30)
+        {
+            while(autor.length() != 30){
+                autor += " ";
+            }
+        }
+        else
+        {
+            autor.substring(0,30);
+        }
+        
+    }
+    public void verificarGenero()
+    {
+        if(genero.length() < 30)
+        {
+            while(genero.length() != 30){
+                genero += " ";
+            }
+        }
+        else
+        {
+            genero.substring(0,30);
+        }
+        
     }
     
-    public boolean agregarLibro(String codigo, String titulo, String autor, String genero) {
+    public void agregarLibro() {
    
+        verificarCodigo();
+        verificarTitulo();
+        verificarAutor();
+        verificarGenero();
         try {
-            String data = "Código:"+codigo+"; Nombre:"+titulo+"; Autor:"+autor+"; Género:"+genero+"; Disponibilidad:"+true+"\n";
             RandomAccessFile archivo = new RandomAccessFile(raiz+"\\LIBROS.dat", "rw");
+            if (archivo.length()!=0){
+                archivo.seek(archivo.length());
+                archivo.writeChars(codigo);
+                archivo.writeChars(titulo);
+                archivo.writeChars(autor);
+                archivo.writeChars(genero);
+                archivo.writeBoolean(disponibilidad);
+            }else{
+                archivo.writeChars(codigo);
+                archivo.writeChars(titulo);
+                archivo.writeChars(autor);
+                archivo.writeChars(genero);
+                archivo.writeBoolean(disponibilidad);
+            }
             
-            return true;
         }catch(Exception e)
         {
             System.out.println("error al ingresar");
-            return false;
         }
     }
 }
