@@ -8,7 +8,9 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
+import java.util.RandomAccess;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -23,11 +25,15 @@ public class Libro {
 
     String raiz = System.getProperty("user.dir");
     
+    //codigo 4 caracteres
     private String codigo;
+    //titulo 100 caracteres
     private String titulo;
+    //autor 30 caracteres
     private String autor;
+    //genero 30 caracteres
     private String genero;
-    //private ArrayList<Usuario> fichaHistorica;
+    //disponibilidad 1
     private boolean disponibilidad;
 
     public Libro(String codigo, String titulo, String autor, String genero, boolean disponibilidad) {
@@ -127,36 +133,32 @@ public class Libro {
         return new String[]{codigo, autor, titulo, String.valueOf(disponibilidad)};
     }
     
-    public void agregarLibro(String codigo, String titulo, String autor, String genero) {
-        BufferedWriter bw = null;
-        FileWriter fw = null;
-
+    public boolean verificarCodigo()
+    {
+        if(codigo.length() < 25)
+        {
+            while(codigo.length() != 25){
+                codigo += " ";
+            }
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public boolean agregarLibro(String codigo, String titulo, String autor, String genero) {
+   
         try {
             String data = "Código:"+codigo+"; Nombre:"+titulo+"; Autor:"+autor+"; Género:"+genero+"; Disponibilidad:"+true+"\n";
-            File file = new File("C:\\Users\\jackr\\OneDrive - Pontificia Universidad Católica del Ecuador\\INGENIERÍA EN SISTEMAS\\CUARTO SEMESTRE\\PROGRAMACIÓN ORIENTADA A OBJETOS\\Biblioteca\\Biblioteca\\src\\biblioteca\\LIBROS.txt");
-            // Si el archivo no existe, se crea!
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-            // flag true, indica adjuntar información al archivo.
-            fw = new FileWriter(file.getAbsoluteFile(), true);
-            bw = new BufferedWriter(fw);
-            bw.write(data);
-            //  System.out.println("información agregada!");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                //Cierra instancias de FileWriter y BufferedWriter
-                if (bw != null) {
-                    bw.close();
-                }
-                if (fw != null) {
-                    fw.close();
-                }
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+            RandomAccessFile archivo = new RandomAccessFile(raiz+"\\LIBROS.dat", "rw");
+            
+            return true;
+        }catch(Exception e)
+        {
+            System.out.println("error al ingresar");
+            return false;
         }
     }
 }
