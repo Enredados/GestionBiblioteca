@@ -49,12 +49,14 @@ public class Usuario extends Persona {
     }
 
     public void agregarUsuario(String cedula, String nombre, String apellido, String telefono, boolean afiliado) {
+        String raiz = System.getProperty("user.dir");
+
         BufferedWriter bw = null;
         FileWriter fw = null;
 
         try {
             String data = "Numero de cedula:" + cedula + "; Nombre:" + nombre + "; Apellido:" + apellido + "; Telefono:" + telefono + "; Afiliado:" + afiliado + "\n";
-            File file = new File("C:\\Users\\jackr\\OneDrive - Pontificia Universidad Católica del Ecuador\\INGENIERÍA EN SISTEMAS\\CUARTO SEMESTRE\\PROGRAMACIÓN ORIENTADA A OBJETOS\\Biblioteca\\Biblioteca\\src\\biblioteca\\USUARIOS.txt");
+            File file = new File(raiz+"\\USUARIOS.txt");
             // Si el archivo no existe, se crea!
             if (!file.exists()) {
                 file.createNewFile();

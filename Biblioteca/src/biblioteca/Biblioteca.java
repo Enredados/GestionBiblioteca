@@ -35,16 +35,16 @@ public class Biblioteca {
             String[] usu=new String[5];
             
             File libros2 = new File(raiz+"\\LIBROS.txt");
-            File bibliotecarios2 = new File(raiz+"BIBLIOTECARIOS.txt");
+            File bibliotecarios2 = new File(raiz+"\\BIBLIOTECARIOS.txt");
             File usuarios2 = new File(raiz+"\\USUARIOS.txt");
             
             arrLibros=desplegarArchivo(libros2);
             arrBibliotecario=desplegarArchivo(bibliotecarios2);
             arrUsuario=desplegarArchivo(usuarios2);
             
-            ArrayList<Libro> libros = new ArrayList<Libro>();
-            ArrayList<Bibliotecario> bibliotecarios = new ArrayList<Bibliotecario>();
-            ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+            ArrayList<Libro> libros = new ArrayList<>();
+            ArrayList<Bibliotecario> bibliotecarios = new ArrayList<>();
+            ArrayList<Usuario> usuarios = new ArrayList<>();
             
             for(int i=0;i<arrLibros.length;i++){
                 arr3 = arrLibros[i].split(";");

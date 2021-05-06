@@ -22,10 +22,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Prestamo extends javax.swing.JFrame {
 
+    String raiz = System.getProperty("user.dir");
     ArrayList<Libro> libros = new ArrayList<>();
     ArrayList<Usuario> usuarios = new ArrayList<>();
     ArrayList<Bibliotecario> bibliotecarios = new ArrayList<>();
-    File libros2 = new File("C:\\Users\\jackr\\OneDrive - Pontificia Universidad Católica del Ecuador\\INGENIERÍA EN SISTEMAS\\CUARTO SEMESTRE\\PROGRAMACIÓN ORIENTADA A OBJETOS\\Biblioteca\\Biblioteca\\src\\biblioteca\\LIBROS.txt");
+    File libros2 = new File(raiz+"\\LIBROS.txt");
 
     /**
      * Creates new form Prestamo
@@ -592,7 +593,7 @@ public class Prestamo extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         ConsultaGeneral cg;
         try {
-            cg = new ConsultaGeneral( usuarios, bibliotecarios);
+            cg = new ConsultaGeneral(usuarios, bibliotecarios);
             cg.setSize(700, 650);
             cg.setVisible(true);
             this.setVisible(false);
@@ -650,14 +651,13 @@ public class Prestamo extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-            
-            DefaultTableModel model = (DefaultTableModel) consultaTabla.getModel();
-            model.setRowCount(0);
-            for(Libro libro : libros){
-                String[] datos = libro.obtenerDatos();
-                model.insertRow(model.getRowCount(), new Object[]{datos[0], datos[1], datos[2], datos[3]});
-            }
+
+        DefaultTableModel model = (DefaultTableModel) consultaTabla.getModel();
+        model.setRowCount(0);
+        for (Libro libro : libros) {
+            String[] datos = libro.obtenerDatos();
+            model.insertRow(model.getRowCount(), new Object[]{datos[0], datos[1], datos[2], datos[3]});
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
