@@ -21,6 +21,8 @@ import java.util.ArrayList;
  */
 public class Libro {
 
+    String raiz = System.getProperty("user.dir");
+    
     private String codigo;
     private String titulo;
     private String autor;
@@ -47,7 +49,7 @@ public class Libro {
             disponibilidad = false;
 
             try {
-                BufferedReader file = new BufferedReader(new FileReader("C:\\Users\\jackr\\OneDrive - Pontificia Universidad Católica del Ecuador\\INGENIERÍA EN SISTEMAS\\CUARTO SEMESTRE\\PROGRAMACIÓN ORIENTADA A OBJETOS\\Biblioteca\\Biblioteca\\src\\biblioteca\\LIBROS.txt"));
+                BufferedReader file = new BufferedReader(new FileReader(raiz +"\\LIBROS.txt"));
                 String line;
                 String input = "";
                 while ((line = file.readLine()) != null) {
@@ -59,7 +61,7 @@ public class Libro {
                         input += line + "\r\n";
                     }
                 }
-                FileOutputStream fileOut = new FileOutputStream("C:\\Users\\jackr\\OneDrive - Pontificia Universidad Católica del Ecuador\\INGENIERÍA EN SISTEMAS\\CUARTO SEMESTRE\\PROGRAMACIÓN ORIENTADA A OBJETOS\\Biblioteca\\Biblioteca\\src\\biblioteca\\LIBROS.txt");
+                FileOutputStream fileOut = new FileOutputStream(raiz+"\\LIBROS.txt");
                 fileOut.write(input.getBytes());
                 fileOut.close();
             } catch (FileNotFoundException e) {
@@ -79,7 +81,7 @@ public class Libro {
         if (!disponibilidad) {
             disponibilidad = true;
             try {
-                BufferedReader file = new BufferedReader(new FileReader("C:\\Users\\jackr\\OneDrive - Pontificia Universidad Católica del Ecuador\\INGENIERÍA EN SISTEMAS\\CUARTO SEMESTRE\\PROGRAMACIÓN ORIENTADA A OBJETOS\\Biblioteca\\Biblioteca\\src\\biblioteca\\LIBROS.txt"));
+                BufferedReader file = new BufferedReader(new FileReader(raiz+"\\LIBROS.txt"));
                 String line;
                 String input = "";
                 while ((line = file.readLine()) != null) {
@@ -91,7 +93,7 @@ public class Libro {
                         input += line + "\r\n";
                     }
                 }
-                FileOutputStream fileOut = new FileOutputStream("C:\\Users\\jackr\\OneDrive - Pontificia Universidad Católica del Ecuador\\INGENIERÍA EN SISTEMAS\\CUARTO SEMESTRE\\PROGRAMACIÓN ORIENTADA A OBJETOS\\Biblioteca\\Biblioteca\\src\\biblioteca\\LIBROS.txt");
+                FileOutputStream fileOut = new FileOutputStream(raiz+"\\LIBROS.txt");
                 fileOut.write(input.getBytes());
                 fileOut.close();
             } catch (FileNotFoundException e) {
