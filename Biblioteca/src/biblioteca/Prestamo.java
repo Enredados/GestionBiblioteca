@@ -94,6 +94,21 @@ public class Prestamo extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         consultaTabla = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        agregCedula2 = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        agregNombre2 = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        agregApellido2 = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        agregTelefono2 = new javax.swing.JTextField();
+        usuarioAceptar2 = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        agregTelefono3 = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        agregTelefono4 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -162,7 +177,7 @@ public class Prestamo extends javax.swing.JFrame {
                     .addComponent(prestUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(80, 80, 80)
                 .addComponent(prestAceptar)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Préstamo", jPanel1);
@@ -219,7 +234,7 @@ public class Prestamo extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(84, 84, 84)
                 .addComponent(recepAceptar)
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Recepción", jPanel2);
@@ -341,7 +356,7 @@ public class Prestamo extends javax.swing.JFrame {
                     .addComponent(agregTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(usuarioAceptar)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("AGREGAR USUARIO", jPanel3);
@@ -441,7 +456,7 @@ public class Prestamo extends javax.swing.JFrame {
                     .addComponent(agregTelefono1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addComponent(usuarioAceptar1)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("AGREGAR LIBROS", jPanel4);
@@ -485,7 +500,7 @@ public class Prestamo extends javax.swing.JFrame {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(42, 42, 42)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -493,6 +508,133 @@ public class Prestamo extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("CONSULTA GENERAL", jPanel5);
+
+        jLabel17.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel17.setText("Agregar usuario");
+
+        jLabel18.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel18.setText("Cédula");
+
+        agregCedula2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        agregCedula2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregCedula2ActionPerformed(evt);
+            }
+        });
+
+        jLabel19.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel19.setText("Nombre");
+
+        agregNombre2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+
+        jLabel20.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel20.setText("Apellido");
+
+        agregApellido2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        agregApellido2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregApellido2ActionPerformed(evt);
+            }
+        });
+
+        jLabel21.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel21.setText("Teléfono");
+
+        agregTelefono2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+
+        usuarioAceptar2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        usuarioAceptar2.setText("Aceptar");
+        usuarioAceptar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuarioAceptar2ActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel22.setText("Usuario");
+
+        agregTelefono3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        agregTelefono3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregTelefono3ActionPerformed(evt);
+            }
+        });
+
+        jLabel23.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel23.setText("Clave");
+
+        agregTelefono4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(140, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(agregApellido2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel20)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel23)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(agregTelefono4, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel18)
+                                    .addComponent(jLabel19)
+                                    .addComponent(jLabel21)
+                                    .addComponent(jLabel22))
+                                .addGap(31, 31, 31)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(agregCedula2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(agregNombre2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(agregTelefono3, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(agregTelefono2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addComponent(usuarioAceptar2)
+                        .addGap(130, 130, 130)))
+                .addGap(100, 100, 100))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel17)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(agregCedula2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(agregNombre2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(agregApellido2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(agregTelefono2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel21))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(agregTelefono3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel22))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(agregTelefono4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel23))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(usuarioAceptar2)
+                .addGap(23, 23, 23))
+        );
+
+        jTabbedPane1.addTab("AGREGAR BIBLIOTECARIO", jPanel6);
 
         jButton3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton3.setText("Salir");
@@ -593,7 +735,7 @@ public class Prestamo extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         ConsultaGeneral cg;
         try {
-            cg = new ConsultaGeneral(usuarios, bibliotecarios);
+            cg = new ConsultaGeneral( usuarios, bibliotecarios);
             cg.setSize(700, 650);
             cg.setVisible(true);
             this.setVisible(false);
@@ -651,14 +793,42 @@ public class Prestamo extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
-        DefaultTableModel model = (DefaultTableModel) consultaTabla.getModel();
-        model.setRowCount(0);
-        for (Libro libro : libros) {
-            String[] datos = libro.obtenerDatos();
-            model.insertRow(model.getRowCount(), new Object[]{datos[0], datos[1], datos[2], datos[3]});
-        }
+        
+            
+            DefaultTableModel model = (DefaultTableModel) consultaTabla.getModel();
+            model.setRowCount(0);
+            for(Libro libro : libros){
+                String[] datos = libro.obtenerDatos();
+                model.insertRow(model.getRowCount(), new Object[]{datos[0], datos[1], datos[2], datos[3]});
+            }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void agregCedula2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregCedula2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_agregCedula2ActionPerformed
+
+    private void agregApellido2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregApellido2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_agregApellido2ActionPerformed
+
+    private void usuarioAceptar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioAceptar2ActionPerformed
+        // TODO add your handling code here:
+        Bibliotecario nuevobiBibliotecario = new Bibliotecario();
+        String cedula = agregCedula2.getText();
+        String nombre = agregNombre2.getText();
+        String apellido = agregApellido2.getText();
+        String telefono = agregTelefono2.getText();
+        String usuario = agregTelefono3.getText();
+        String clave = agregTelefono4.getText();
+
+        nuevobiBibliotecario.agregarBibliotecario(cedula, nombre, apellido, telefono,usuario , clave);
+        JOptionPane.showMessageDialog(this, "BIBLIOTECARIO AGREGADO");
+        bibliotecarios.add(new Bibliotecario(cedula, nombre, apellido, telefono,usuario , clave));
+    }//GEN-LAST:event_usuarioAceptar2ActionPerformed
+
+    private void agregTelefono3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregTelefono3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_agregTelefono3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -698,12 +868,18 @@ public class Prestamo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField agregApellido;
     private javax.swing.JTextField agregApellido1;
+    private javax.swing.JTextField agregApellido2;
     private javax.swing.JTextField agregCedula;
     private javax.swing.JTextField agregCedula1;
+    private javax.swing.JTextField agregCedula2;
     private javax.swing.JTextField agregNombre;
     private javax.swing.JTextField agregNombre1;
+    private javax.swing.JTextField agregNombre2;
     private javax.swing.JTextField agregTelefono;
     private javax.swing.JTextField agregTelefono1;
+    private javax.swing.JTextField agregTelefono2;
+    private javax.swing.JTextField agregTelefono3;
+    private javax.swing.JTextField agregTelefono4;
     private javax.swing.JComboBox<String> agregTipo;
     private javax.swing.JTable consultaTabla;
     private javax.swing.JButton jButton1;
@@ -716,7 +892,14 @@ public class Prestamo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -729,6 +912,7 @@ public class Prestamo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton prestAceptar;
@@ -738,5 +922,6 @@ public class Prestamo extends javax.swing.JFrame {
     private javax.swing.JTextField recepLibro;
     private javax.swing.JButton usuarioAceptar;
     private javax.swing.JButton usuarioAceptar1;
+    private javax.swing.JButton usuarioAceptar2;
     // End of variables declaration//GEN-END:variables
 }
