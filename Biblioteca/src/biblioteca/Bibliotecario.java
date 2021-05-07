@@ -9,14 +9,12 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 
 /**
  *
  * @author alang
  */
 public class Bibliotecario extends Persona {
-    String raiz = System.getProperty("user.dir");
     private String usuario;
     private String clave;
     
@@ -35,92 +33,14 @@ public class Bibliotecario extends Persona {
     public String obtenerClave(){
         return clave;
     }
-    public void verificarNumeroCedula()
-    {
-        if(numeroCedula.length() < 25)
-        {
-            while(numeroCedula.length() != 25){
-                numeroCedula += " ";
-            }
-        }
-        else
-        {
-             numeroCedula.substring(0,25);
-        }
-    }
-    public void verificarNombre()
-    {
-        if(nombre.length() < 25)
-        {
-            while(nombre.length() != 25){
-                nombre += " ";
-            }
-        }
-        else
-        {
-             nombre.substring(0,25);
-        }
-    }
-    public void verificarApellido()
-    {
-        if(apellido.length() < 25)
-        {
-            while(apellido.length() != 25){
-                apellido += " ";
-            }
-        }
-        else
-        {
-             apellido.substring(0,25);
-        }
-    }
-    public void verificarTelefono()
-    {
-        if(telefono.length() < 25)
-        {
-            while(telefono.length() != 25){
-                telefono += " ";
-            }
-        }
-        else
-        {
-             telefono.substring(0,25);
-        }
-    }
-    public void verificarUsuario()
-    {
-        if(usuario.length() < 25)
-        {
-            while(usuario.length() != 25){
-                usuario += " ";
-            }
-        }
-        else
-        {
-             usuario.substring(0,25);
-        }
-    }
-    public void verificarClave()
-    {
-        if(clave.length() < 20)
-        {
-            while(clave.length() != 20){
-                clave += " ";
-            }
-        }
-        else
-        {
-             clave.substring(0,25);
-        }
-    }
-    public void agregarBibliotecario( ) {
+    public void agregarBibliotecario(String cedula, String nombre, String apellido, String telefono,String usuario ,String clave ) {
         
         BufferedWriter bw = null;
         FileWriter fw = null;
 
         try {
             String raiz = System.getProperty("user.dir");
-            String data = "Numero de cedula:" + numeroCedula + "; Nombre:" + nombre + "; Apellido:" + apellido + "; Telefono:" + telefono +"; Usuario:" + usuario + "; ContraseÃ±a:" + clave + "\n";
+            String data = "Numero de cedula:" + cedula + "; Nombre:" + nombre + "; Apellido:" + apellido + "; Telefono:" + telefono +"; Usuario:" + usuario + "; ContraseÃ±a:" + clave + "\n";
             File file = new File(raiz+"\\BIBLIOTECARIOS.txt");
             // Si el archivo no existe, se crea!
             if (!file.exists()) {
@@ -145,38 +65,6 @@ public class Bibliotecario extends Persona {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-        }
-    }
-    public void agregarBibliotecarioRandomico(){
-        verificarNombre();
-        verificarApellido();
-        verificarNumeroCedula();
-        verificarTelefono();
-        verificarUsuario();
-        verificarClave();
-        try {
-            RandomAccessFile archivo = new RandomAccessFile(raiz+"\\BIBLIOTECARIO.dat", "rw");
-            if (archivo.length()!=0){
-                
-                archivo.seek(archivo.length());
-                archivo.writeChars(numeroCedula);
-                archivo.writeChars(nombre);
-                archivo.writeChars(apellido);
-                archivo.writeChars(telefono);
-                archivo.writeChars(usuario);
-                archivo.writeChars(clave);
-            }else{
-                archivo.writeChars(numeroCedula);
-                archivo.writeChars(nombre);
-                archivo.writeChars(apellido);
-                archivo.writeChars(telefono);         
-                archivo.writeChars(usuario);
-                archivo.writeChars(clave);
-            }
-            
-        }catch(Exception e)
-        {
-            System.out.println("error al ingresar");
         }
     }
 }

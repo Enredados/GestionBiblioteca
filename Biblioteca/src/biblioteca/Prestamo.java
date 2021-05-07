@@ -27,8 +27,7 @@ public class Prestamo extends javax.swing.JFrame {
     ArrayList<Usuario> usuarios = new ArrayList<>();
     ArrayList<Bibliotecario> bibliotecarios = new ArrayList<>();
     File libros2 = new File(raiz+"\\LIBROS.txt");
-    File usuarios2 = new File(raiz+"\\USUARIOS.txt");
-    File bibliotecarios2 = new File(raiz+"\\BIBLIOTECARIOS.txt");
+
     /**
      * Creates new form Prestamo
      */
@@ -752,18 +751,15 @@ public class Prestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_agregCedulaActionPerformed
 
     private void usuarioAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioAceptarActionPerformed
-        
+        Usuario nuvoUsuario = new Usuario();
         String cedula = agregCedula.getText();
         String nombre = agregNombre.getText();
         String apellido = agregApellido.getText();
         String telefono = agregTelefono.getText();
         boolean afiliacion = agregTipo.getSelectedItem().toString().equals("Afiliado") ? true : false;
-        Usuario nuvoUsuario = new Usuario(cedula, nombre, apellido, telefono, afiliacion);
-        nuvoUsuario.agregarUsuario();
-        nuvoUsuario.agregarUsuarioRandomico();
-        usuarios.add(new Usuario(cedula, nombre, apellido, telefono, afiliacion));
+
+        nuvoUsuario.agregarUsuario(cedula, nombre, apellido, telefono, afiliacion);
         JOptionPane.showMessageDialog(this, "USUARIO AGREGADO");
-        
     }//GEN-LAST:event_usuarioAceptarActionPerformed
 
 
@@ -791,11 +787,9 @@ public class Prestamo extends javax.swing.JFrame {
         String autor = agregApellido1.getText();
         String genero = agregTelefono1.getText();
         Libro nuevoLibro = new Libro(codigo, titulo, autor, genero, true);
-        nuevoLibro.agregarUsuarioTxt();
         nuevoLibro.agregarLibro();
-        libros.add(new Libro(codigo, titulo, autor, genero, true));
         JOptionPane.showMessageDialog(this, "LIBRO AGREGADO");
-        
+        libros.add(nuevoLibro);
     }//GEN-LAST:event_usuarioAceptar1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -820,19 +814,17 @@ public class Prestamo extends javax.swing.JFrame {
 
     private void usuarioAceptar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioAceptar2ActionPerformed
         // TODO add your handling code here:
-        
+        Bibliotecario nuevobiBibliotecario = new Bibliotecario();
         String cedula = agregCedula2.getText();
         String nombre = agregNombre2.getText();
         String apellido = agregApellido2.getText();
         String telefono = agregTelefono2.getText();
         String usuario = agregTelefono3.getText();
         String clave = agregTelefono4.getText();
-        Bibliotecario nuevobiBibliotecario = new Bibliotecario(cedula, nombre, apellido, telefono,usuario , clave); 
-        nuevobiBibliotecario.agregarBibliotecario();
-        nuevobiBibliotecario.agregarBibliotecarioRandomico();
-        bibliotecarios.add(new Bibliotecario(cedula, nombre, apellido, telefono,usuario , clave));
+
+        nuevobiBibliotecario.agregarBibliotecario(cedula, nombre, apellido, telefono,usuario , clave);
         JOptionPane.showMessageDialog(this, "BIBLIOTECARIO AGREGADO");
-        
+        bibliotecarios.add(new Bibliotecario(cedula, nombre, apellido, telefono,usuario , clave));
     }//GEN-LAST:event_usuarioAceptar2ActionPerformed
 
     private void agregTelefono3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregTelefono3ActionPerformed

@@ -79,9 +79,8 @@ public class ConsultaGeneral extends javax.swing.JFrame {
         initComponents();
         this.usuarios = usuarios;
         this.bibliotecarios = bibliotecarios;
-        agregarLibros(desplegarArchivo(libros2));
         setLocationRelativeTo(null);
-        
+        agregarLibros(desplegarArchivo(libros2));
     }
 
     /**
@@ -252,10 +251,8 @@ public class ConsultaGeneral extends javax.swing.JFrame {
 
     }//GEN-LAST:event_consultaBuscarActionPerformed
 
-    private Libro busqueda(String porBuscar, int tipo) throws IOException {
+    private Libro busqueda(String porBuscar, int tipo) {
         Libro miLibro = null;
-        libros.removeAll(libros);
-        agregarLibros(desplegarArchivo(libros2));
         switch (tipo) {
             case 0:
                 for (Libro libroTemp : libros) {

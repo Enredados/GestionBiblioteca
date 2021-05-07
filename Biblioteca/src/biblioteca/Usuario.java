@@ -9,16 +9,13 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 
 /**
  *
  * @author alang
  */
 public class Usuario extends Persona {
-    
-    String raiz = System.getProperty("user.dir");
-    
+
     private boolean afiliado;
 
     public Usuario(String numeroCedula, String nombre, String apellido, String telefono, boolean afiliado) {
@@ -50,67 +47,15 @@ public class Usuario extends Persona {
 
         return datos;
     }
-    public void verificarNumeroCedula()
-    {
-        if(numeroCedula.length() < 25)
-        {
-            while(numeroCedula.length() != 25){
-                numeroCedula += " ";
-            }
-        }
-        else
-        {
-             numeroCedula.substring(0,25);
-        }
-    }
-    public void verificarNombre()
-    {
-        if(nombre.length() < 25)
-        {
-            while(nombre.length() != 25){
-                nombre += " ";
-            }
-        }
-        else
-        {
-             nombre.substring(0,25);
-        }
-    }
-    public void verificarApellido()
-    {
-        if(apellido.length() < 25)
-        {
-            while(apellido.length() != 25){
-                apellido += " ";
-            }
-        }
-        else
-        {
-             apellido.substring(0,25);
-        }
-    }
-    public void verificarTelefono()
-    {
-        if(telefono.length() < 25)
-        {
-            while(telefono.length() != 25){
-                telefono += " ";
-            }
-        }
-        else
-        {
-             telefono.substring(0,25);
-        }
-    }
-   
-    public void agregarUsuario() {
+
+    public void agregarUsuario(String cedula, String nombre, String apellido, String telefono, boolean afiliado) {
         String raiz = System.getProperty("user.dir");
 
         BufferedWriter bw = null;
         FileWriter fw = null;
 
         try {
-            String data = "Numero de cedula:" + numeroCedula+ "; Nombre:" + nombre + "; Apellido:" + apellido + "; Telefono:" + telefono + "; Afiliado:" + afiliado + "\n";
+            String data = "Numero de cedula:" + cedula + "; Nombre:" + nombre + "; Apellido:" + apellido + "; Telefono:" + telefono + "; Afiliado:" + afiliado + "\n";
             File file = new File(raiz+"\\USUARIOS.txt");
             // Si el archivo no existe, se crea!
             if (!file.exists()) {
@@ -135,35 +80,6 @@ public class Usuario extends Persona {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-        }
-    }
-    
-    public void agregarUsuarioRandomico(){
-        verificarNombre();
-        verificarApellido();
-        verificarNumeroCedula();
-        verificarTelefono();
-        try {
-            RandomAccessFile archivo = new RandomAccessFile(raiz+"\\USUARIOS.dat", "rw");
-            if (archivo.length()!=0){
-                
-                archivo.seek(archivo.length());
-                archivo.writeChars(numeroCedula);
-                archivo.writeChars(nombre);
-                archivo.writeChars(apellido);
-                archivo.writeChars(telefono);
-                archivo.writeBoolean(afiliado);
-            }else{
-                archivo.writeChars(numeroCedula);
-                archivo.writeChars(nombre);
-                archivo.writeChars(apellido);
-                archivo.writeChars(telefono);         
-                archivo.writeBoolean(afiliado);
-            }
-            
-        }catch(Exception e)
-        {
-            System.out.println("error al ingresar");
         }
     }
 }

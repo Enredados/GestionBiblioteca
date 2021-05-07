@@ -1,4 +1,4 @@
 Numero de cedula:098; Nombre:Mateo; Apellido:Suarez; Telefono:08457; Usuario:bb01; Contraseña:001
 Numero de cedula:765; Nombre:Nicolas; Apellido:Paredes; Telefono:03565; Usuario:bb02; Contraseña:002
 Numero de cedula:432; Nombre:Andres; Apellido:Tipan; Telefono:01367; Usuario:bb03; Contraseña:003
-Numero de cedula:101; Nombre:RTH; Apellido:FTYJ; Telefono:098; Usuario:FTH; ContraseÃ±a:THD
+

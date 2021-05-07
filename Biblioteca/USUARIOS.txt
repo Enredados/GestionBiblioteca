@@ -1,3 +1,4 @@
 Numero de cedula:123; Nombre:Jack; Apellido:Narvaez; Telefono:0736; Afiliado:true
 Numero de cedula:456; Nombre:Ximena; Apellido:Cacerez; Telefono:5274; Afiliado:false
 Numero de cedula:789; Nombre:Alberth; Apellido:Garcia; Telefono:9768; Afiliado:true
+
