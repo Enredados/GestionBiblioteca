@@ -191,34 +191,6 @@ public class Libro {
         
     }
     
-    public void agregarLibro() {
-   
-        verificarCodigo();
-        verificarTitulo();
-        verificarAutor();
-        verificarGenero();
-        try {
-            RandomAccessFile archivo = new RandomAccessFile(raiz+"\\LIBROS.dat", "rw");
-            if (archivo.length()!=0){
-                archivo.seek(archivo.length());
-                archivo.writeChars(codigo);
-                archivo.writeChars(titulo);
-                archivo.writeChars(autor);
-                archivo.writeChars(genero);
-                archivo.writeBoolean(disponibilidad);
-            }else{
-                archivo.writeChars(codigo);
-                archivo.writeChars(titulo);
-                archivo.writeChars(autor);
-                archivo.writeChars(genero);
-                archivo.writeBoolean(disponibilidad);
-            }
-            
-        }catch(Exception e)
-        {
-            System.out.println("error al ingresar");
-        }
-    }
     public void agregarUsuarioTxt (){
         String raiz = System.getProperty("user.dir");
 
@@ -252,5 +224,37 @@ public class Libro {
                 ex.printStackTrace();
             }
         }
+    }
+    public void agregarLibro() {
+   
+        verificarCodigo();
+        verificarTitulo();
+        verificarAutor();
+        verificarGenero();
+        try {
+            RandomAccessFile archivo = new RandomAccessFile(raiz+"\\LIBROS.dat", "rw");
+            if (archivo.length()!=0){
+                archivo.seek(archivo.length());
+                archivo.writeChars(codigo);
+                archivo.writeChars(titulo);
+                archivo.writeChars(autor);
+                archivo.writeChars(genero);
+                archivo.writeBoolean(disponibilidad);
+            }else{
+                archivo.writeChars(codigo);
+                archivo.writeChars(titulo);
+                archivo.writeChars(autor);
+                archivo.writeChars(genero);
+                archivo.writeBoolean(disponibilidad);
+            }
+            
+        }catch(Exception e)
+        {
+            System.out.println("error al ingresar");
+        }
+    }
+    public void cargarLibro()
+    {
+        
     }
 }
