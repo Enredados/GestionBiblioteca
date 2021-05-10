@@ -146,6 +146,7 @@ public class Usuario extends Persona {
         verificarTelefono();
         try {
             RandomAccessFile archivo = new RandomAccessFile(raiz+"\\USUARIOS.dat", "rw");
+            archivo.seek(0);
             if (archivo.length()!=0){
                 
                 archivo.seek(archivo.length());
@@ -174,14 +175,18 @@ public class Usuario extends Persona {
         String apellido="";
         String telefono="";
         boolean afiliado = true;
+        
         double cregistros;
-        int tregistros;
-        tregistros = 101;
+        int tregistros = 201;
         File arch = new File(raiz+"\\USUARIOS.dat");
         RandomAccessFile archivo = new RandomAccessFile(arch, "r"); 
         cregistros = archivo.length()/tregistros;
-        
+        System.out.println(cregistros);
         for(int r=0; r<cregistros; r++){
+            cedula="";
+            nombre="";
+            apellido="";
+            telefono="";
             for(int i=0;i<25;i++){
                 cedula+=archivo.readChar();
             }
@@ -195,8 +200,10 @@ public class Usuario extends Persona {
                 telefono+=archivo.readChar();
             }
             afiliado = archivo.readBoolean();
+            System.out.println("CEDULA: "+cedula+"\nNOMBRE: "+nombre+"\nAPELLIDO: "+apellido+"\nTELEFONO: "+telefono+"\nAFILIADO: "+afiliado);
+            
         }
-        System.out.println("CEDULA: "+cedula+"\nNOMBRE: "+nombre+"\nAPELLIDO: "+apellido+"\nTELEFONO: "+telefono+"\nAFILIADO: "+afiliado);
+        
         
     }
 }
