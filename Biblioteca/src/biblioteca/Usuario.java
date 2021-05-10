@@ -7,6 +7,7 @@ package biblioteca;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -165,5 +166,36 @@ public class Usuario extends Persona {
         {
             System.out.println("error al ingresar");
         }
+    }
+    
+    public void leerArchivo() throws FileNotFoundException, IOException {
+        String cedula="";
+        String nombre="";
+        String apellido="";
+        String telefono="";
+        boolean afiliado;
+        double cregistros;
+        int tregistros;
+        tregistros = 101;
+        File arch = new File(raiz+"\\USUARIOS.dat");
+        RandomAccessFile archivo = new RandomAccessFile(arch, "r"); 
+        cregistros = archivo.length()/tregistros;
+        
+        for(int r=0; r<cregistros; r++){
+            for(int i=0;i<25;i++){
+                cedula+=archivo.readChar();
+            }
+            for(int i=0;i<25;i++){
+                nombre+=archivo.readChar();
+            }
+            for(int i=0;i<25;i++){
+                apellido+=archivo.readChar();
+            }
+            for(int i=0;i<25;i++){
+                telefono+=archivo.readChar();
+            }
+            afiliado = archivo.readBoolean();
+        }
+        
     }
 }
