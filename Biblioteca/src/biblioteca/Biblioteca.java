@@ -34,27 +34,16 @@ public class Biblioteca {
             String[] bib=new String[6];
             String[] usu=new String[5];
             
-            File libros2 = new File(raiz+"\\LIBROS.txt");
             File bibliotecarios2 = new File(raiz+"\\BIBLIOTECARIOS.txt");
             File usuarios2 = new File(raiz+"\\USUARIOS.txt");
             
-            arrLibros=desplegarArchivo(libros2);
             arrBibliotecario=desplegarArchivo(bibliotecarios2);
             arrUsuario=desplegarArchivo(usuarios2);
             
-            ArrayList<Libro> libros = Libro.cargarLibros();
             ArrayList<Bibliotecario> bibliotecarios = new ArrayList<>();
             ArrayList<Usuario> usuarios = new ArrayList<>();
             
-            for(int i=0;i<arrLibros.length;i++){
-                arr3 = arrLibros[i].split(";");
-                for(int j=0;j<arr3.length;j++){
-                    String arr4[]=arr3[j].split(":");
-                    lib[j]=arr4[1];
-                }
-                    libros.add(new Libro(lib[0],lib[1],lib[2],lib[3],Boolean.parseBoolean(lib[4].trim())));
-                    
-            }
+           
             
             for(int i=0;i<arrBibliotecario.length;i++){
                 arr3 = arrBibliotecario[i].split(";");
