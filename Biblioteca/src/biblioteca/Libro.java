@@ -247,17 +247,35 @@ public class Libro {
         String raiz = System.getProperty("user.dir");
         File arch = new File(raiz + "\\Libros.dat");
         long cregistros;
-        
+
         try {
             RandomAccessFile archivo = new RandomAccessFile(arch, "r");
             //165 caracteres cada registro
-            int tregistro = 165;
-            cregistros = archivo.length()/tregistro;
+            int tregistro = 265;
+            cregistros = archivo.length() / tregistro;
+
+            String codigo = "";
+            String titulo = "";
+            String autor = "";
+            String genero = "";
+
             System.out.println(cregistros);
             for (int r = 0; r < cregistros; r++) {
-                 libros.add(new Libro(archivo.readUTF(),archivo.readUTF(),archivo.readUTF(),archivo.readUTF(), archivo.readBoolean()));
+                for (int j = 0; j < 4; j++) {
+                    codigo += archivo.readChar();
+                }
+                for (int j = 0; j < 4; j++) {
+                    titulo += archivo.readChar();
+                }
+                for (int j = 0; j < 4; j++) {
+                    autor += archivo.readChar();
+                }
+                for (int j = 0; j < 4; j++) {
+                    genero += archivo.readChar();
+                }
+                libros.add(new Libro(codigo,titulo,autor,genero, archivo.readBoolean()));
             }
-            
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Libro.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

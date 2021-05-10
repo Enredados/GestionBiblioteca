@@ -294,6 +294,7 @@ public class ConsultaGeneral extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_consultaLimpiarActionPerformed
 
+    ///llama al al siguiente jframe, se debe borrar los parametros cuando este listo los archivos.dat
     private void consultaBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultaBuscar1ActionPerformed
         this.setVisible(false);
         Login lg = new Login(libros, usuarios, bibliotecarios);

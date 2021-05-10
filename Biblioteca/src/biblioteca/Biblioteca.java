@@ -42,7 +42,7 @@ public class Biblioteca {
             arrBibliotecario=desplegarArchivo(bibliotecarios2);
             arrUsuario=desplegarArchivo(usuarios2);
             
-            ArrayList<Libro> libros = new ArrayList<>();
+            ArrayList<Libro> libros = Libro.cargarLibros();
             ArrayList<Bibliotecario> bibliotecarios = new ArrayList<>();
             ArrayList<Usuario> usuarios = new ArrayList<>();
             
