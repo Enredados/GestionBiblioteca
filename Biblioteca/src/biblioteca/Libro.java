@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.RandomAccess;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,7 +26,7 @@ import java.util.RandomAccess;
 public class Libro {
 
     String raiz = System.getProperty("user.dir");
-    
+
     //codigo 4 caracteres
     private String codigo;
     //titulo 100 caracteres
@@ -55,7 +57,7 @@ public class Libro {
             disponibilidad = false;
 
             try {
-                BufferedReader file = new BufferedReader(new FileReader(raiz +"\\LIBROS.txt"));
+                BufferedReader file = new BufferedReader(new FileReader(raiz + "\\LIBROS.txt"));
                 String line;
                 String input = "";
                 while ((line = file.readLine()) != null) {
@@ -67,7 +69,7 @@ public class Libro {
                         input += line + "\r\n";
                     }
                 }
-                FileOutputStream fileOut = new FileOutputStream(raiz+"\\LIBROS.txt");
+                FileOutputStream fileOut = new FileOutputStream(raiz + "\\LIBROS.txt");
                 fileOut.write(input.getBytes());
                 fileOut.close();
             } catch (FileNotFoundException e) {
@@ -87,7 +89,7 @@ public class Libro {
         if (!disponibilidad) {
             disponibilidad = true;
             try {
-                BufferedReader file = new BufferedReader(new FileReader(raiz+"\\LIBROS.txt"));
+                BufferedReader file = new BufferedReader(new FileReader(raiz + "\\LIBROS.txt"));
                 String line;
                 String input = "";
                 while ((line = file.readLine()) != null) {
@@ -99,7 +101,7 @@ public class Libro {
                         input += line + "\r\n";
                     }
                 }
-                FileOutputStream fileOut = new FileOutputStream(raiz+"\\LIBROS.txt");
+                FileOutputStream fileOut = new FileOutputStream(raiz + "\\LIBROS.txt");
                 fileOut.write(input.getBytes());
                 fileOut.close();
             } catch (FileNotFoundException e) {
@@ -112,7 +114,6 @@ public class Libro {
             return false;
         }
     }
-
 
     public String obtenerCodigo() {
         return this.codigo;
@@ -133,73 +134,60 @@ public class Libro {
     public String[] obtenerDatos() {
         return new String[]{codigo, autor, titulo, String.valueOf(disponibilidad)};
     }
-    
-    public void verificarCodigo()
-    {
-        if(codigo.length() < 25)
-        {
-            while(codigo.length() != 25){
+
+    public void verificarCodigo() {
+        if (codigo.length() < 25) {
+            while (codigo.length() != 25) {
                 codigo += " ";
             }
+        } else {
+            codigo.substring(0, 25);
         }
-        else
-        {
-             codigo.substring(0,25);
-        }
-        
+
     }
-    public void verificarTitulo()
-    {
-        if(titulo.length() < 100)
-        {
-            while(titulo.length() != 100){
+
+    public void verificarTitulo() {
+        if (titulo.length() < 100) {
+            while (titulo.length() != 100) {
                 titulo += " ";
             }
+        } else {
+            titulo.substring(0, 100);
         }
-        else
-        {
-            titulo.substring(0,100);
-        }
-        
+
     }
-    public void verificarAutor()
-    {
-        if(autor.length() < 30)
-        {
-            while(autor.length() != 30){
+
+    public void verificarAutor() {
+        if (autor.length() < 30) {
+            while (autor.length() != 30) {
                 autor += " ";
             }
+        } else {
+            autor.substring(0, 30);
         }
-        else
-        {
-            autor.substring(0,30);
-        }
-        
+
     }
-    public void verificarGenero()
-    {
-        if(genero.length() < 30)
-        {
-            while(genero.length() != 30){
+
+    public void verificarGenero() {
+        if (genero.length() < 30) {
+            while (genero.length() != 30) {
                 genero += " ";
             }
+        } else {
+            genero.substring(0, 30);
         }
-        else
-        {
-            genero.substring(0,30);
-        }
-        
+
     }
-    
-    public void agregarUsuarioTxt (){
+
+    public void agregarUsuarioTxt() {
         String raiz = System.getProperty("user.dir");
 
         BufferedWriter bw = null;
         FileWriter fw = null;
-        
+
         try {
             String data = "Código:" + codigo + "; Nombre:" + titulo + "; Autor:" + autor + "; Género:" + genero + "; Disponibilidad:" + disponibilidad + "\n";
-            File file = new File(raiz+"\\LIBROS.txt");
+            File file = new File(raiz + "\\LIBROS.txt");
             // Si el archivo no existe, se crea!
             if (!file.exists()) {
                 file.createNewFile();
@@ -225,36 +213,57 @@ public class Libro {
             }
         }
     }
+
     public void agregarLibro() {
-   
+
         verificarCodigo();
         verificarTitulo();
         verificarAutor();
         verificarGenero();
         try {
-            RandomAccessFile archivo = new RandomAccessFile(raiz+"\\LIBROS.dat", "rw");
-            if (archivo.length()!=0){
+            RandomAccessFile archivo = new RandomAccessFile(raiz + "\\LIBROS.dat", "rw");
+            if (archivo.length() != 0) {
                 archivo.seek(archivo.length());
                 archivo.writeChars(codigo);
                 archivo.writeChars(titulo);
                 archivo.writeChars(autor);
                 archivo.writeChars(genero);
                 archivo.writeBoolean(disponibilidad);
-            }else{
+            } else {
                 archivo.writeChars(codigo);
                 archivo.writeChars(titulo);
                 archivo.writeChars(autor);
                 archivo.writeChars(genero);
                 archivo.writeBoolean(disponibilidad);
             }
-            
-        }catch(Exception e)
-        {
+
+        } catch (Exception e) {
             System.out.println("error al ingresar");
         }
     }
-    public void cargarLibro()
-    {
+
+    static public ArrayList<Libro> cargarLibros() {
+        ArrayList<Libro> libros = new ArrayList<>();
+        String raiz = System.getProperty("user.dir");
+        File arch = new File(raiz + "\\Libros.dat");
+        long cregistros;
         
+        try {
+            RandomAccessFile archivo = new RandomAccessFile(arch, "r");
+            //165 caracteres cada registro
+            int tregistro = 165;
+            cregistros = archivo.length()/tregistro;
+            System.out.println(cregistros);
+            for (int r = 0; r < cregistros; r++) {
+                 libros.add(new Libro(archivo.readUTF(),archivo.readUTF(),archivo.readUTF(),archivo.readUTF(), archivo.readBoolean()));
+            }
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Libro.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Libro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return libros;
+
     }
 }
