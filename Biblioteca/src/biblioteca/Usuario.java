@@ -173,7 +173,7 @@ public class Usuario extends Persona {
         String nombre="";
         String apellido="";
         String telefono="";
-        boolean afiliado;
+        boolean afiliado = true;
         double cregistros;
         int tregistros;
         tregistros = 101;
@@ -196,6 +196,7 @@ public class Usuario extends Persona {
             }
             afiliado = archivo.readBoolean();
         }
+        System.out.println("CEDULA: "+cedula+"\nNOMBRE: "+nombre+"\nAPELLIDO: "+apellido+"\nTELEFONO: "+telefono+"\nAFILIADO: "+afiliado);
         
     }
 }

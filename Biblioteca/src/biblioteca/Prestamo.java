@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 public class Prestamo extends javax.swing.JFrame {
 
     String raiz = System.getProperty("user.dir");
-    ArrayList<Libro> libros = Libro.cargarLibros();
+    ArrayList<Libro> libros = new ArrayList<>();
     ArrayList<Usuario> usuarios = new ArrayList<>();
     ArrayList<Bibliotecario> bibliotecarios = new ArrayList<>();
     File libros2 = new File(raiz+"\\LIBROS.txt");
@@ -761,6 +761,11 @@ public class Prestamo extends javax.swing.JFrame {
         Usuario nuvoUsuario = new Usuario(cedula, nombre, apellido, telefono, afiliacion);
         nuvoUsuario.agregarUsuario();
         nuvoUsuario.agregarUsuarioRandomico();
+        try {
+            nuvoUsuario.leerArchivo();
+        } catch (IOException ex) {
+            Logger.getLogger(Prestamo.class.getName()).log(Level.SEVERE, null, ex);
+        }
         usuarios.add(new Usuario(cedula, nombre, apellido, telefono, afiliacion));
         JOptionPane.showMessageDialog(this, "USUARIO AGREGADO");
         
