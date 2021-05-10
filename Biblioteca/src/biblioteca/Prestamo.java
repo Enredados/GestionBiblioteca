@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 public class Prestamo extends javax.swing.JFrame {
 
     String raiz = System.getProperty("user.dir");
-    ArrayList<Libro> libros = new ArrayList<>();
+    ArrayList<Libro> libros = Libro.cargarLibros();
     ArrayList<Usuario> usuarios = new ArrayList<>();
     ArrayList<Bibliotecario> bibliotecarios = new ArrayList<>();
     File libros2 = new File(raiz+"\\LIBROS.txt");
@@ -39,7 +39,7 @@ public class Prestamo extends javax.swing.JFrame {
 
     public Prestamo(ArrayList<Libro> libros, ArrayList<Usuario> usuarios, ArrayList<Bibliotecario> bibliotecarios) {
         initComponents();
-        this.libros = libros;
+       // this.libros = libros;
         this.usuarios = usuarios;
         this.bibliotecarios = bibliotecarios;
         setLocationRelativeTo(null);
