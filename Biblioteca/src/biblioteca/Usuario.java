@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,7 +19,7 @@ import java.io.RandomAccessFile;
  */
 public class Usuario extends Persona {
     
-    String raiz = System.getProperty("user.dir");
+    
     
     private boolean afiliado;
 
@@ -140,6 +141,7 @@ public class Usuario extends Persona {
     }
     
     public void agregarUsuarioRandomico(){
+        String raiz = System.getProperty("user.dir");
         verificarNombre();
         verificarApellido();
         verificarNumeroCedula();
@@ -169,7 +171,10 @@ public class Usuario extends Persona {
         }
     }
     
-    public void leerArchivo() throws FileNotFoundException, IOException {
+    static public ArrayList<Usuario> leerArchivo() throws FileNotFoundException, IOException {
+        
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+        String raiz = System.getProperty("user.dir");
         String cedula="";
         String nombre="";
         String apellido="";
@@ -200,9 +205,10 @@ public class Usuario extends Persona {
                 telefono+=archivo.readChar();
             }
             afiliado = archivo.readBoolean();
-            System.out.println("CEDULA: "+cedula+"\nNOMBRE: "+nombre+"\nAPELLIDO: "+apellido+"\nTELEFONO: "+telefono+"\nAFILIADO: "+afiliado);
-            
+            usuarios.add(new Usuario(cedula,nombre,apellido,telefono,afiliado));
+                        
         }
+        return usuarios;
         
         
     }
