@@ -788,6 +788,7 @@ public class Prestamo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_agregApellido1ActionPerformed
 
+    //agregar libro
     private void usuarioAceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioAceptar1ActionPerformed
         // TODO add your handling code here:
         
@@ -795,8 +796,9 @@ public class Prestamo extends javax.swing.JFrame {
         String titulo = agregNombre1.getText();
         String autor = agregApellido1.getText();
         String genero = agregTelefono1.getText();
+        
         Libro nuevoLibro = new Libro(codigo, titulo, autor, genero, true);
-        nuevoLibro.agregarUsuarioTxt();
+        //nuevoLibro.agregarUsuarioTxt();
         nuevoLibro.agregarLibro();
         libros.add(new Libro(codigo, titulo, autor, genero, true));
         JOptionPane.showMessageDialog(this, "LIBRO AGREGADO");

@@ -24,62 +24,23 @@ import javax.swing.table.DefaultTableModel;
 public class ConsultaGeneral extends javax.swing.JFrame {
 
     String raiz = System.getProperty("user.dir");
-    ArrayList<Libro> libros = new ArrayList<>();
+    ArrayList<Libro> libros = Libro.cargarLibros();
     ArrayList<Usuario> usuarios = new ArrayList<>();
     ArrayList<Bibliotecario> bibliotecarios = new ArrayList<>();
     File libros2 = new File(raiz+"\\LIBROS.txt");
-
-    private String[] desplegarArchivo(File f) throws IOException {
-        FileReader archivo;
-        BufferedReader filtrado;
-        String aux = "";
-        try {
-            archivo = new FileReader(f);
-            filtrado = new BufferedReader(archivo);
-            String linea = "";
-            while (linea != null) {
-                linea = filtrado.readLine();
-                if (linea != null) {
-                    aux += linea + "\n";
-                }
-            }
-            String[] arr = aux.split("\n");
-            return arr;
-
-        } catch (FileNotFoundException e) {
-            e.getMessage();
-        }
-        return null;
-    }
-
-    private void agregarLibros(String[] arrLibros) throws IOException {
-        String[] arr3;
-        String[] lib = new String[5];
-        for (int i = 0; i < arrLibros.length; i++) {
-            arr3 = arrLibros[i].split(";");
-            for (int j = 0; j < arr3.length; j++) {
-                String arr4[] = arr3[j].split(":");
-                lib[j] = arr4[1];
-            }
-            libros.add(new Libro(lib[0], lib[1], lib[2], lib[3], Boolean.parseBoolean(lib[4].trim())));
-
-        }
-    }
-
+    
     /**
      * Creates new form ConsultaGeneral
      */
     public ConsultaGeneral() throws IOException {
         initComponents();
         setLocationRelativeTo(null);
-        agregarLibros(desplegarArchivo(libros2));
     }
 
     public ConsultaGeneral(ArrayList<Usuario> usuarios, ArrayList<Bibliotecario> bibliotecarios) throws IOException {
         initComponents();
         this.usuarios = usuarios;
         this.bibliotecarios = bibliotecarios;
-        agregarLibros(desplegarArchivo(libros2));
         setLocationRelativeTo(null);
         
     }
@@ -217,6 +178,7 @@ public class ConsultaGeneral extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //listener vacio
     private void consultaTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultaTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_consultaTxtActionPerformed
@@ -254,8 +216,6 @@ public class ConsultaGeneral extends javax.swing.JFrame {
 
     private Libro busqueda(String porBuscar, int tipo) throws IOException {
         Libro miLibro = null;
-        libros.removeAll(libros);
-        agregarLibros(desplegarArchivo(libros2));
         switch (tipo) {
             case 0:
                 for (Libro libroTemp : libros) {
@@ -281,10 +241,13 @@ public class ConsultaGeneral extends javax.swing.JFrame {
         }
         return miLibro;
     }
+    
+    //listener vacio
     private void consultaTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultaTipoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_consultaTipoActionPerformed
 
+    //limpia la tabla
     private void consultaLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultaLimpiarActionPerformed
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) consultaTabla.getModel();

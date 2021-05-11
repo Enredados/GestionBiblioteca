@@ -136,12 +136,12 @@ public class Libro {
     }
 
     public void verificarCodigo() {
-        if (codigo.length() < 25) {
-            while (codigo.length() != 25) {
+        if (codigo.length() < 4) {
+            while (codigo.length() != 4) {
                 codigo += " ";
             }
         } else {
-            codigo.substring(0, 25);
+            codigo.substring(0, 4);
         }
 
     }
@@ -251,7 +251,7 @@ public class Libro {
         try {
             RandomAccessFile archivo = new RandomAccessFile(arch, "r");
             //165 caracteres cada registro
-            int tregistro = 265;
+            int tregistro = 269;
             cregistros = archivo.length() / tregistro;
 
             String codigo = "";
@@ -264,16 +264,16 @@ public class Libro {
                 for (int j = 0; j < 4; j++) {
                     codigo += archivo.readChar();
                 }
-                for (int j = 0; j < 4; j++) {
+                for (int j = 0; j < 100; j++) {
                     titulo += archivo.readChar();
                 }
-                for (int j = 0; j < 4; j++) {
+                for (int j = 0; j < 30; j++) {
                     autor += archivo.readChar();
                 }
-                for (int j = 0; j < 4; j++) {
+                for (int j = 0; j < 30; j++) {
                     genero += archivo.readChar();
                 }
-                libros.add(new Libro(codigo,titulo,autor,genero, archivo.readBoolean()));
+                libros.add(new Libro(codigo.trim(),titulo.trim(),autor.trim(),genero.trim(), archivo.readBoolean()));
             }
 
         } catch (FileNotFoundException ex) {
