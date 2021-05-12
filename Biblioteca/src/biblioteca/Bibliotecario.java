@@ -7,9 +7,11 @@ package biblioteca;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
 
 /**
  *
@@ -178,5 +180,54 @@ public class Bibliotecario extends Persona {
         {
             System.out.println("error al ingresar");
         }
+    }
+    static public ArrayList<Bibliotecario> leerArchivo() throws FileNotFoundException, IOException {
+        
+        ArrayList<Bibliotecario> bibliotecarios = new ArrayList<>();
+        String raiz = System.getProperty("user.dir");
+        String cedula="";
+        String nombre="";
+        String apellido="";
+        String telefono="";
+        String usuario="";
+        String clave="";
+        boolean afiliado = true;
+        
+        double cregistros;
+        int tregistros = 300;
+        File arch = new File(raiz+"\\BIBLIOTECARIOS.dat");
+        RandomAccessFile archivo = new RandomAccessFile(arch, "r"); 
+        cregistros = archivo.length()/tregistros;
+        System.out.println(cregistros);
+        for(int r=0; r<cregistros; r++){
+            cedula="";
+            nombre="";
+            apellido="";
+            telefono="";
+            for(int i=0;i<25;i++){
+                cedula+=archivo.readChar();
+            }
+            for(int i=0;i<25;i++){
+                nombre+=archivo.readChar();
+            }
+            for(int i=0;i<25;i++){
+                apellido+=archivo.readChar();
+            }
+            for(int i=0;i<25;i++){
+                telefono+=archivo.readChar();
+            }
+            for(int i=0;i<25;i++){
+                usuario+=archivo.readChar();
+            }
+            for(int i=0;i<25;i++){
+                clave+=archivo.readChar();
+            }
+            afiliado = archivo.readBoolean();
+            bibliotecarios.add(new Bibliotecario(cedula,nombre,apellido,telefono,usuario, clave));
+                        
+        }
+        return bibliotecarios;
+        
+        
     }
 }
