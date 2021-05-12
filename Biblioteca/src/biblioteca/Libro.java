@@ -37,6 +37,7 @@ public class Libro {
     private String genero;
     //disponibilidad 1
     private boolean disponibilidad;
+    //329
 
     public Libro(String codigo, String titulo, String autor, String genero, boolean disponibilidad) {
         this.codigo = codigo;
@@ -57,25 +58,27 @@ public class Libro {
             disponibilidad = false;
 
             try {
-                BufferedReader file = new BufferedReader(new FileReader(raiz + "\\LIBROS.txt"));
-                String line;
-                String input = "";
-                while ((line = file.readLine()) != null) {
-                    /* Podemos verificar si es Usuario_1 y \r\n es para hacer el 
-                     Salto de Línea y tener el formato original */
-                    if (line.contains(codigo)) {
-                        input += line.replaceAll("true", "false\r\n");
+                RandomAccessFile archivo = new RandomAccessFile(raiz + "\\LIBROS.dat", "rw");
+                archivo.seek(0);
+                String auxCodigo = "";
+
+                while (auxCodigo.equals(codigo)) {
+                    for (int i = 0; i < 4; i++) {
+                        auxCodigo += archivo.readChar();
+                    }
+                    
+                    if (auxCodigo.equals(codigo)) {
+                        archivo.seek(archivo.getFilePointer() + 320);
+                        archivo.writeBoolean(disponibilidad);
                     } else {
-                        input += line + "\r\n";
+                        archivo.seek(321);
                     }
                 }
-                FileOutputStream fileOut = new FileOutputStream(raiz + "\\LIBROS.txt");
-                fileOut.write(input.getBytes());
-                fileOut.close();
-            } catch (FileNotFoundException e) {
-                System.out.print(e.getMessage());
-            } catch (IOException e) {
-                System.out.print(e.getMessage());
+
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Libro.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Libro.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             return true;
@@ -125,6 +128,10 @@ public class Libro {
 
     public String obtenerAutor() {
         return this.autor;
+    }
+
+    public String obtenerGenero() {
+        return genero;
     }
 
     public boolean obtenerDisponibilidad() {
@@ -179,41 +186,6 @@ public class Libro {
 
     }
 
-    public void agregarUsuarioTxt() {
-        String raiz = System.getProperty("user.dir");
-
-        BufferedWriter bw = null;
-        FileWriter fw = null;
-
-        try {
-            String data = "Código:" + codigo + "; Nombre:" + titulo + "; Autor:" + autor + "; Género:" + genero + "; Disponibilidad:" + disponibilidad + "\n";
-            File file = new File(raiz + "\\LIBROS.txt");
-            // Si el archivo no existe, se crea!
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-            // flag true, indica adjuntar información al archivo.
-            fw = new FileWriter(file.getAbsoluteFile(), true);
-            bw = new BufferedWriter(fw);
-            bw.write(data);
-            //  System.out.println("información agregada!");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                //Cierra instancias de FileWriter y BufferedWriter
-                if (bw != null) {
-                    bw.close();
-                }
-                if (fw != null) {
-                    fw.close();
-                }
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
-
     public void agregarLibro() {
 
         verificarCodigo();
@@ -250,8 +222,50 @@ public class Libro {
 
         try {
             RandomAccessFile archivo = new RandomAccessFile(arch, "r");
-            //165 caracteres cada registro
-            int tregistro = 269;
+            //329 caracteres cada registro
+            int tregistro = 329;
+            cregistros = archivo.length() / tregistro;
+
+            String codigo = "";
+            String titulo = "";
+            String autor = "";
+            String genero = "";
+
+            for (int r = 0; r < cregistros; r++) {
+                for (int j = 0; j < 4; j++) {
+                    codigo += archivo.readChar();
+                }
+                for (int j = 0; j < 100; j++) {
+                    titulo += archivo.readChar();
+                }
+                for (int j = 0; j < 30; j++) {
+                    autor += archivo.readChar();
+                }
+                for (int j = 0; j < 30; j++) {
+                    genero += archivo.readChar();
+                }
+                libros.add(new Libro(codigo.trim(), titulo.trim(), autor.trim(), genero.trim(), archivo.readBoolean()));
+            }
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Libro.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Libro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return libros;
+
+    }
+
+    static public ArrayList<Libro> LibrosAutor(String autorBusqueda) {
+        ArrayList<Libro> libros = new ArrayList<>();
+        String raiz = System.getProperty("user.dir");
+        File arch = new File(raiz + "\\Libros.dat");
+        long cregistros;
+
+        try {
+            RandomAccessFile archivo = new RandomAccessFile(arch, "r");
+            //329 caracteres cada registro
+            int tregistro = 329;
             cregistros = archivo.length() / tregistro;
 
             String codigo = "";
@@ -273,7 +287,9 @@ public class Libro {
                 for (int j = 0; j < 30; j++) {
                     genero += archivo.readChar();
                 }
-                libros.add(new Libro(codigo.trim(),titulo.trim(),autor.trim(),genero.trim(), archivo.readBoolean()));
+                if (autor.equals(autorBusqueda)) {
+                    libros.add(new Libro(codigo.trim(), titulo.trim(), autor.trim(), genero.trim(), archivo.readBoolean()));
+                }
             }
 
         } catch (FileNotFoundException ex) {
@@ -282,6 +298,5 @@ public class Libro {
             Logger.getLogger(Libro.class.getName()).log(Level.SEVERE, null, ex);
         }
         return libros;
-
     }
 }

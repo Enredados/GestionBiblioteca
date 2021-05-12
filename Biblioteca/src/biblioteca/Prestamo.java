@@ -22,26 +22,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Prestamo extends javax.swing.JFrame {
 
-    String raiz = System.getProperty("user.dir");
-    ArrayList<Libro> libros = new ArrayList<>();
-    ArrayList<Usuario> usuarios = new ArrayList<>();
-    ArrayList<Bibliotecario> bibliotecarios = new ArrayList<>();
-    File libros2 = new File(raiz+"\\LIBROS.txt");
-    File usuarios2 = new File(raiz+"\\USUARIOS.txt");
-    File bibliotecarios2 = new File(raiz+"\\BIBLIOTECARIOS.txt");
+    ArrayList<Libro> libros = Libro.cargarLibros();
+    ArrayList<Usuario> usuarios = Usuario.leerArchivo();
+    ArrayList<Bibliotecario> bibliotecarios = Bibliotecario.leerArchivo();
+
     /**
      * Creates new form Prestamo
      */
     public Prestamo() {
         initComponents();
-        setLocationRelativeTo(null);
-    }
-
-    public Prestamo(ArrayList<Libro> libros, ArrayList<Usuario> usuarios, ArrayList<Bibliotecario> bibliotecarios) {
-        initComponents();
-       // this.libros = libros;
-        this.usuarios = usuarios;
-        this.bibliotecarios = bibliotecarios;
         setLocationRelativeTo(null);
     }
 
@@ -717,6 +706,7 @@ public class Prestamo extends javax.swing.JFrame {
             if (libro.equals(libroTemp.obtenerCodigo()) && libroTemp.obtenerDisponibilidad()) {
                 libroTemp.prestar(auxUsuario);
                 encontradoL = true;
+                libros = Libro.cargarLibros();
                 break;
             } else {
                 encontradoL = false;
@@ -735,16 +725,11 @@ public class Prestamo extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         ConsultaGeneral cg;
-        try {
-            cg = new ConsultaGeneral( usuarios, bibliotecarios);
-            cg.setSize(700, 650);
-            cg.setVisible(true);
-            this.setVisible(false);
-        } catch (IOException ex) {
-            Logger.getLogger(Prestamo.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
-
+        cg = new ConsultaGeneral();
+        cg.setSize(700, 650);
+        cg.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void agregCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregCedulaActionPerformed
@@ -752,7 +737,7 @@ public class Prestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_agregCedulaActionPerformed
 
     private void usuarioAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioAceptarActionPerformed
-        
+
         String cedula = agregCedula.getText();
         String nombre = agregNombre.getText();
         String apellido = agregApellido.getText();
@@ -761,14 +746,12 @@ public class Prestamo extends javax.swing.JFrame {
         Usuario nuvoUsuario = new Usuario(cedula, nombre, apellido, telefono, afiliacion);
         nuvoUsuario.agregarUsuario();
         nuvoUsuario.agregarUsuarioRandomico();
-        try {
-            nuvoUsuario.leerArchivo();
-        } catch (IOException ex) {
-            Logger.getLogger(Prestamo.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+        nuvoUsuario.leerArchivo();
+
         usuarios.add(new Usuario(cedula, nombre, apellido, telefono, afiliacion));
         JOptionPane.showMessageDialog(this, "USUARIO AGREGADO");
-        
+
     }//GEN-LAST:event_usuarioAceptarActionPerformed
 
 
@@ -791,30 +774,29 @@ public class Prestamo extends javax.swing.JFrame {
     //agregar libro
     private void usuarioAceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioAceptar1ActionPerformed
         // TODO add your handling code here:
-        
+
         String codigo = agregCedula1.getText();
         String titulo = agregNombre1.getText();
         String autor = agregApellido1.getText();
         String genero = agregTelefono1.getText();
-        
+
         Libro nuevoLibro = new Libro(codigo, titulo, autor, genero, true);
         //nuevoLibro.agregarUsuarioTxt();
         nuevoLibro.agregarLibro();
         libros.add(new Libro(codigo, titulo, autor, genero, true));
         JOptionPane.showMessageDialog(this, "LIBRO AGREGADO");
-        
+
     }//GEN-LAST:event_usuarioAceptar1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-            
-            DefaultTableModel model = (DefaultTableModel) consultaTabla.getModel();
-            model.setRowCount(0);
-            for(Libro libro : libros){
-                String[] datos = libro.obtenerDatos();
-                model.insertRow(model.getRowCount(), new Object[]{datos[0], datos[1], datos[2], datos[3]});
-            }
+
+        DefaultTableModel model = (DefaultTableModel) consultaTabla.getModel();
+        model.setRowCount(0);
+        for (Libro libro : libros) {
+            String[] datos = libro.obtenerDatos();
+            model.insertRow(model.getRowCount(), new Object[]{datos[0], datos[1], datos[2], datos[3]});
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void agregCedula2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregCedula2ActionPerformed
@@ -827,19 +809,18 @@ public class Prestamo extends javax.swing.JFrame {
 
     private void usuarioAceptar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioAceptar2ActionPerformed
         // TODO add your handling code here:
-        
+
         String cedula = agregCedula2.getText();
         String nombre = agregNombre2.getText();
         String apellido = agregApellido2.getText();
         String telefono = agregTelefono2.getText();
         String usuario = agregTelefono3.getText();
         String clave = agregTelefono4.getText();
-        Bibliotecario nuevobiBibliotecario = new Bibliotecario(cedula, nombre, apellido, telefono,usuario , clave); 
-        nuevobiBibliotecario.agregarBibliotecario();
+        Bibliotecario nuevobiBibliotecario = new Bibliotecario(cedula, nombre, apellido, telefono, usuario, clave);
         nuevobiBibliotecario.agregarBibliotecarioRandomico();
-        bibliotecarios.add(new Bibliotecario(cedula, nombre, apellido, telefono,usuario , clave));
+        bibliotecarios.add(new Bibliotecario(cedula, nombre, apellido, telefono, usuario, clave));
         JOptionPane.showMessageDialog(this, "BIBLIOTECARIO AGREGADO");
-        
+
     }//GEN-LAST:event_usuarioAceptar2ActionPerformed
 
     private void agregTelefono3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregTelefono3ActionPerformed

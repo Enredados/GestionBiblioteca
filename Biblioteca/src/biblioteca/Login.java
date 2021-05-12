@@ -16,24 +16,17 @@ import java.util.ArrayList;
  */
 public class Login extends javax.swing.JFrame {
 
-    ArrayList<Libro> libros = new ArrayList<>();
-    ArrayList<Usuario> usuarios = new ArrayList<>();
-    ArrayList<Bibliotecario> bibliotecarios = new ArrayList<>();
+     ArrayList<Bibliotecario> bibliotecarios = Bibliotecario.leerArchivo();
 
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
-    }
-
-    public Login (ArrayList<Libro> libros, ArrayList<Usuario> usuarios, ArrayList<Bibliotecario> bibliotecarios) {
-        initComponents();
-        this.libros = libros;
-        this.usuarios = usuarios;
-        this.bibliotecarios = bibliotecarios;
         setLocationRelativeTo(null);
     }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -188,7 +181,7 @@ public class Login extends javax.swing.JFrame {
         
         for (Bibliotecario bibliotecario : bibliotecarios) {
             if (bibliotecario.obtenerUsuario().equals(usuario) && bibliotecario.obtenerClave().equals(password)) {
-                Prestamo prestamo = new Prestamo(libros, usuarios, bibliotecarios);
+                Prestamo prestamo = new Prestamo();
                 prestamo.setSize(550, 490);
                 prestamo.setVisible(true);
                 this.setVisible(false);
