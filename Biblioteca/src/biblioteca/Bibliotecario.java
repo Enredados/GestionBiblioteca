@@ -145,7 +145,7 @@ public class Bibliotecario extends Persona {
         String apellido = "";
         String telefono = "";
         String usuario = "";
-        String clave = "";
+        String clave = "";  
 
         double cregistros;
         int tregistros = 300;
@@ -153,7 +153,7 @@ public class Bibliotecario extends Persona {
             File arch = new File(raiz + "\\BIBLIOTECARIOS.dat");
             RandomAccessFile archivo = new RandomAccessFile(arch, "r");
             cregistros = archivo.length() / tregistros;
-            
+           
             for (int r = 0; r < cregistros; r++) {
                 cedula = "";
                 nombre = "";
@@ -177,7 +177,7 @@ public class Bibliotecario extends Persona {
                 for (int i = 0; i < 25; i++) {
                     clave += archivo.readChar();
                 }
-                bibliotecarios.add(new Bibliotecario(cedula, nombre, apellido, telefono, usuario, clave));
+                bibliotecarios.add(new Bibliotecario(cedula.trim(), nombre.trim(), apellido.trim(), telefono.trim(), usuario.trim(), clave.trim()));
 
             }
         } catch (FileNotFoundException ex) {

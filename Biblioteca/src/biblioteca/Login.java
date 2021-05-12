@@ -182,7 +182,7 @@ public class Login extends javax.swing.JFrame {
         for (Bibliotecario bibliotecario : bibliotecarios) {
             if (bibliotecario.obtenerUsuario().equals(usuario) && bibliotecario.obtenerClave().equals(password)) {
                 Prestamo prestamo = new Prestamo();
-                prestamo.setSize(550, 490);
+                prestamo.setSize(550, 600);
                 prestamo.setVisible(true);
                 this.setVisible(false);
             }

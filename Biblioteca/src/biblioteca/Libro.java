@@ -62,11 +62,11 @@ public class Libro {
                 archivo.seek(0);
                 String auxCodigo = "";
 
-                while (auxCodigo.equals(codigo)) {
+                while (!auxCodigo.equals(codigo)) {
                     for (int i = 0; i < 4; i++) {
                         auxCodigo += archivo.readChar();
                     }
-                    
+
                     if (auxCodigo.equals(codigo)) {
                         archivo.seek(archivo.getFilePointer() + 320);
                         archivo.writeBoolean(disponibilidad);
@@ -92,26 +92,29 @@ public class Libro {
         if (!disponibilidad) {
             disponibilidad = true;
             try {
-                BufferedReader file = new BufferedReader(new FileReader(raiz + "\\LIBROS.txt"));
-                String line;
-                String input = "";
-                while ((line = file.readLine()) != null) {
-                    /* Podemos verificar si es Usuario_1 y \r\n es para hacer el 
-                     Salto de Línea y tener el formato original */
-                    if (line.contains(codigo)) {
-                        input += line.replaceAll("false", "true\r\n");
+                RandomAccessFile archivo = new RandomAccessFile(raiz + "\\LIBROS.dat", "rw");
+                archivo.seek(0);
+                String auxCodigo = "";
+
+                while (!auxCodigo.equals(codigo)) {
+                    for (int i = 0; i < 4; i++) {
+                        auxCodigo += archivo.readChar();
+                    }
+
+                    if (auxCodigo.equals(codigo)) {
+                        archivo.seek(archivo.getFilePointer() + 320);
+                        archivo.writeBoolean(disponibilidad);
                     } else {
-                        input += line + "\r\n";
+                        archivo.seek(321);
                     }
                 }
-                FileOutputStream fileOut = new FileOutputStream(raiz + "\\LIBROS.txt");
-                fileOut.write(input.getBytes());
-                fileOut.close();
-            } catch (FileNotFoundException e) {
-                System.out.print(e.getMessage());
-            } catch (IOException e) {
-                System.out.print(e.getMessage());
+
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Libro.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Libro.class.getName()).log(Level.SEVERE, null, ex);
             }
+
             return true;
         } else {
             return false;
@@ -226,12 +229,12 @@ public class Libro {
             int tregistro = 329;
             cregistros = archivo.length() / tregistro;
 
-            String codigo = "";
-            String titulo = "";
-            String autor = "";
-            String genero = "";
-
             for (int r = 0; r < cregistros; r++) {
+                String codigo = "";
+                String titulo = "";
+                String autor = "";
+                String genero = "";
+
                 for (int j = 0; j < 4; j++) {
                     codigo += archivo.readChar();
                 }

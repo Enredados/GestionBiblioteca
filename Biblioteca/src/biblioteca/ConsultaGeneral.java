@@ -26,8 +26,37 @@ public class ConsultaGeneral extends javax.swing.JFrame {
         setLocationRelativeTo(null);
 
         for (Libro libro : libros) {
-            CBXAutores.addItem(libro.obtenerAutor());
-            CBXGenero.addItem(libro.obtenerGenero());
+            String autor = libro.obtenerAutor();
+            String genero = libro.obtenerGenero();
+
+            boolean existe = false;
+
+            for (int i = 0; i < CBXAutores.getItemCount(); i++) {
+
+                if (CBXAutores.getItemAt(i).equals(autor)) {
+                    existe = true;
+                    break;
+                }
+                existe = false;
+            }
+
+            if (!existe) {
+                CBXAutores.addItem(autor);
+            }
+
+            existe = false;
+            for (int i = 0; i < CBXGenero.getItemCount(); i++) {
+
+                if (CBXGenero.getItemAt(i).equals(genero)) {
+                    existe = true;
+                    break;
+                }
+                existe = false;
+            }
+            if (!existe) {
+                CBXGenero.addItem(genero);
+            }
+
         }
     }
 
@@ -488,7 +517,7 @@ public class ConsultaGeneral extends javax.swing.JFrame {
     }//GEN-LAST:event_MostrarAutorActionPerformed
 
     private void MostrarGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarGeneroActionPerformed
-       
+
         DefaultTableModel model = (DefaultTableModel) TLibrosGenero.getModel();
         model.setRowCount(0);
         for (Libro libro : libros) {

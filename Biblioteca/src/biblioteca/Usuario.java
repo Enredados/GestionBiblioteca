@@ -174,7 +174,7 @@ public class Usuario extends Persona {
             File arch = new File(raiz + "\\USUARIOS.dat");
             RandomAccessFile archivo = new RandomAccessFile(arch, "r");
             cregistros = archivo.length() / tregistros;
-            System.out.println(cregistros);
+
             for (int r = 0; r < cregistros; r++) {
                 cedula = "";
                 nombre = "";
@@ -193,7 +193,7 @@ public class Usuario extends Persona {
                     telefono += archivo.readChar();
                 }
                 afiliado = archivo.readBoolean();
-                usuarios.add(new Usuario(cedula, nombre, apellido, telefono, afiliado));
+                usuarios.add(new Usuario(cedula.trim(), nombre.trim(), apellido.trim(), telefono.trim(), afiliado));
 
             }
         } catch (FileNotFoundException ex) {

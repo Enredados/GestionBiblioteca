@@ -9,3 +9,6 @@ Numero de cedula:456; Nombre:Xime; Apellido:Caceres; Telefono:097; Afiliado:fals
 Numero de cedula:123; Nombre:Jack; Apellido:NARV; Telefono:098; Afiliado:true
 Numero de cedula:456; Nombre:Xime; Apellido:Cac; Telefono:095; Afiliado:false
 Numero de cedula:789; Nombre:Juanito; Apellido:Conte; Telefono:098; Afiliado:false
+Numero de cedula:456; Nombre:Ximena; Apellido:Cacerez; Telefono:5274; Afiliado:false
+Numero de cedula:123; Nombre:Jack; Apellido:Narvaez; Telefono:0736; Afiliado:true
+Numero de cedula:456; Nombre:Ximena; Apellido:Cacerez; Telefono:5274; Afiliado:false

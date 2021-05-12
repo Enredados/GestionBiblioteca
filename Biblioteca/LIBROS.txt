@@ -3,5 +3,5 @@ Código:L002; Nombre:Harry Potter y la Piedra Filosofal; Autor:J. K. Rowling; G�
 Código:L003; Nombre:Cincuenta sombras de Grey; Autor:E. L. James; Género:Novela romántico-erótica; Disponibilidad:true
 Código:L004; Nombre:Las Crónicas de Narnia; Autor:C. S. Lewis; Género:Ciencia Ficcion; Disponibilidad:true
 Código:L005; Nombre:Luna de Plutón; Autor:Dross Rotzank; Género:Ciencia Ficcion; Disponibilidad:true
-Código:L006; Nombre:DFGT; Autor:MJGH,J; Género:SFS; Disponibilidad:true
-Código:L001; Nombre:Corazon de campeon; Autor:Carlos Cauthemoc; Género:Motivacion; Disponibilidad:true
+
+
