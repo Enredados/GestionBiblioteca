@@ -748,10 +748,10 @@ public class Prestamo extends javax.swing.JFrame {
         String telefono = agregTelefono.getText();
         boolean afiliacion = agregTipo.getSelectedItem().toString().equals("Afiliado") ? true : false;
         Usuario nuvoUsuario = new Usuario(cedula, nombre, apellido, telefono, afiliacion);
-        nuvoUsuario.agregarUsuario();
+       // nuvoUsuario.agregarUsuario();
         nuvoUsuario.agregarUsuarioRandomico();
 
-        nuvoUsuario.leerArchivo();
+        //nuvoUsuario.leerArchivo();
 
         usuarios.add(new Usuario(cedula, nombre, apellido, telefono, afiliacion));
         JOptionPane.showMessageDialog(this, "USUARIO AGREGADO");

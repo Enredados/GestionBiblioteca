@@ -159,6 +159,8 @@ public class Bibliotecario extends Persona {
                 nombre = "";
                 apellido = "";
                 telefono = "";
+                usuario = "";
+                clave = "";
                 for (int i = 0; i < 25; i++) {
                     cedula += archivo.readChar();
                 }
@@ -178,7 +180,7 @@ public class Bibliotecario extends Persona {
                     clave += archivo.readChar();
                 }
                 bibliotecarios.add(new Bibliotecario(cedula.trim(), nombre.trim(), apellido.trim(), telefono.trim(), usuario.trim(), clave.trim()));
-
+                
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Bibliotecario.class.getName()).log(Level.SEVERE, null, ex);
