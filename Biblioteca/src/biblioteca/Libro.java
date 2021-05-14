@@ -142,7 +142,7 @@ public class Libro {
     }
 
     public String[] obtenerDatos() {
-        return new String[]{codigo, titulo, autor, String.valueOf(disponibilidad)};
+        return new String[]{codigo, titulo, autor, genero, String.valueOf(disponibilidad)};
     }
 
     public void verificarCodigo() {

@@ -9,6 +9,11 @@ import java.io.IOException;
 import java.util.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -17,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 public class ConsultaGeneral extends javax.swing.JFrame {
 
     ArrayList<Libro> libros = Libro.cargarLibros();
-
+    
     /**
      * Creates new form ConsultaGeneral
      */
@@ -89,12 +94,14 @@ public class ConsultaGeneral extends javax.swing.JFrame {
         MostrarAutor = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         TLibrosAutor = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         CBXGenero = new javax.swing.JComboBox<>();
         MostrarGenero = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         TLibrosGenero = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
         consultaBuscar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -166,14 +173,14 @@ public class ConsultaGeneral extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(consultaBuscar)
                             .addComponent(consultaTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 261, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(consultaLimpiar, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(consultaTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,11 +207,11 @@ public class ConsultaGeneral extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Título", "Autor", "Disponible"
+                "Código", "Título", "Autor", "Género", "Disponible"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -237,7 +244,7 @@ public class ConsultaGeneral extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(292, 292, 292)
                         .addComponent(jLabel4)))
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,6 +261,11 @@ public class ConsultaGeneral extends javax.swing.JFrame {
         jTabbedPane1.addTab("CONSULTA GENERAL", jPanel5);
 
         CBXAutores.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        CBXAutores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBXAutoresActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("Libros por Autor");
@@ -271,11 +283,11 @@ public class ConsultaGeneral extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Título", "Autor", "Disponible"
+                "Código", "Título", "Autor", "Género", "Disponible"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -283,6 +295,14 @@ public class ConsultaGeneral extends javax.swing.JFrame {
             }
         });
         jScrollPane3.setViewportView(TLibrosAutor);
+
+        jButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton2.setText("ESTADÍSTICA");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -301,8 +321,10 @@ public class ConsultaGeneral extends javax.swing.JFrame {
                             .addComponent(MostrarAutor))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                             .addGap(88, 88, 88)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(118, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jButton2)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,7 +337,9 @@ public class ConsultaGeneral extends javax.swing.JFrame {
                     .addComponent(MostrarAutor))
                 .addGap(50, 50, 50)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Libros por Autor", jPanel2);
@@ -324,6 +348,11 @@ public class ConsultaGeneral extends javax.swing.JFrame {
         jLabel3.setText("Libros por Género");
 
         CBXGenero.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        CBXGenero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBXGeneroActionPerformed(evt);
+            }
+        });
 
         MostrarGenero.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         MostrarGenero.setText("Mostrar");
@@ -338,11 +367,11 @@ public class ConsultaGeneral extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Título", "Autor", "Disponible"
+                "Código", "Título", "Autor", "Género", "Disponible"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -350,6 +379,14 @@ public class ConsultaGeneral extends javax.swing.JFrame {
             }
         });
         jScrollPane4.setViewportView(TLibrosGenero);
+
+        jButton3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton3.setText("ESTADÍSTICA");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -368,8 +405,10 @@ public class ConsultaGeneral extends javax.swing.JFrame {
                             .addComponent(MostrarGenero))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                             .addGap(88, 88, 88)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(118, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jButton3)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,7 +421,9 @@ public class ConsultaGeneral extends javax.swing.JFrame {
                     .addComponent(MostrarGenero))
                 .addGap(50, 50, 50)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Libros por Genero", jPanel3);
@@ -444,7 +485,7 @@ public class ConsultaGeneral extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) consultaTabla.getModel();
 
             String[] elementos = miLibro.obtenerDatos();
-            model.insertRow(model.getRowCount(), new Object[]{elementos[0], elementos[1], elementos[2], elementos[3]});
+            model.insertRow(model.getRowCount(), new Object[]{elementos[0], elementos[1], elementos[2], elementos[3], elementos[4]});
 
             // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         } catch (Exception e) {
@@ -511,7 +552,7 @@ public class ConsultaGeneral extends javax.swing.JFrame {
         for (Libro libro : libros) {
             if (libro.obtenerAutor().equals(CBXAutores.getSelectedItem())) {
                 String[] datos = libro.obtenerDatos();
-                model.insertRow(model.getRowCount(), new Object[]{datos[0], datos[1], datos[2], datos[3]});
+                model.insertRow(model.getRowCount(), new Object[]{datos[0], datos[1], datos[2], datos[3],datos[4]});
             }
         }
     }//GEN-LAST:event_MostrarAutorActionPerformed
@@ -523,7 +564,7 @@ public class ConsultaGeneral extends javax.swing.JFrame {
         for (Libro libro : libros) {
             if (libro.obtenerGenero().equals(CBXGenero.getSelectedItem())) {
                 String[] datos = libro.obtenerDatos();
-                model.insertRow(model.getRowCount(), new Object[]{datos[0], datos[1], datos[2], datos[3]});
+                model.insertRow(model.getRowCount(), new Object[]{datos[0], datos[1], datos[2], datos[3], datos[4]});
             }
         }
     }//GEN-LAST:event_MostrarGeneroActionPerformed
@@ -535,9 +576,81 @@ public class ConsultaGeneral extends javax.swing.JFrame {
         model.setRowCount(0);
         for (Libro libro : libros) {
             String[] datos = libro.obtenerDatos();
-            model.insertRow(model.getRowCount(), new Object[]{datos[0], datos[1], datos[2], datos[3]});
+            model.insertRow(model.getRowCount(), new Object[]{datos[0], datos[1], datos[2], datos[3], datos[4]});
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void CBXGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBXGeneroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CBXGeneroActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        try{
+            int cont = 0;
+            int cont2 = 0;
+            int [] cantLibros = new int [CBXAutores.getItemCount()];
+            for(int i = 0; i<CBXAutores.getItemCount(); i++){
+                for(Libro libro : libros){
+                     if(libro.obtenerAutor().equals(CBXAutores.getItemAt(i))){
+                        cont++;
+                    } 
+                }
+                cantLibros[i] = cont;
+                cont = 0;
+            }
+            DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+            for(int i = 0; i<CBXAutores.getItemCount();i++){
+                 dataset.setValue(cantLibros[i],"CANTIDAD LIBROS", CBXAutores.getItemAt(i));
+            }
+           JFreeChart chart = ChartFactory.createBarChart("LIBROS POR AUTOR","AUTOR","CANTIDAD LIBROS",dataset);
+           CategoryPlot p = chart.getCategoryPlot();
+          // p.setRangeGridlinePaint(Color.black);
+           ChartFrame frame = new ChartFrame("DIAGRAMA DE BARRAS",chart);
+           frame.setVisible(true);
+           frame.setLocationRelativeTo(null);
+           frame.setSize(800,800);
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void CBXAutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBXAutoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CBXAutoresActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        try{
+            int cont = 0;
+            int cont2 = 0;
+            int [] cantLibros = new int [CBXGenero.getItemCount()];
+            for(int i = 0; i<CBXGenero.getItemCount(); i++){
+                for(Libro libro : libros){
+                     if(libro.obtenerGenero().equals(CBXGenero.getItemAt(i))){
+                        cont++;
+                    } 
+                }
+                cantLibros[i] = cont;
+                cont = 0;
+            }
+            DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+            for(int i = 0; i<CBXGenero.getItemCount();i++){
+                 dataset.setValue(cantLibros[i],"CANTIDAD LIBROS", CBXGenero.getItemAt(i));
+            }
+           JFreeChart chart = ChartFactory.createBarChart("LIBROS POR GENERO","GENERO","CANTIDAD LIBROS",dataset);
+           CategoryPlot p = chart.getCategoryPlot();
+          // p.setRangeGridlinePaint(Color.black);
+           ChartFrame frame = new ChartFrame("DIAGRAMA DE BARRAS",chart);
+           frame.setVisible(true);
+           frame.setLocationRelativeTo(null);
+           frame.setSize(800,800);
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -593,6 +706,8 @@ public class ConsultaGeneral extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> consultaTipo;
     private javax.swing.JTextField consultaTxt;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

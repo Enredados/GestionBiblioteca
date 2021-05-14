@@ -456,11 +456,11 @@ public class Prestamo extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Título", "Autor", "Disponible"
+                "Código", "Título", "Autor", "Género", "Disponible"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -748,11 +748,7 @@ public class Prestamo extends javax.swing.JFrame {
         String telefono = agregTelefono.getText();
         boolean afiliacion = agregTipo.getSelectedItem().toString().equals("Afiliado") ? true : false;
         Usuario nuvoUsuario = new Usuario(cedula, nombre, apellido, telefono, afiliacion);
-       // nuvoUsuario.agregarUsuario();
         nuvoUsuario.agregarUsuarioRandomico();
-
-        //nuvoUsuario.leerArchivo();
-
         usuarios.add(new Usuario(cedula, nombre, apellido, telefono, afiliacion));
         JOptionPane.showMessageDialog(this, "USUARIO AGREGADO");
 
@@ -798,7 +794,7 @@ public class Prestamo extends javax.swing.JFrame {
         model.setRowCount(0);
         for (Libro libro : libros) {
             String[] datos = libro.obtenerDatos();
-            model.insertRow(model.getRowCount(), new Object[]{datos[0], datos[1], datos[2], datos[3]});
+            model.insertRow(model.getRowCount(), new Object[]{datos[0], datos[1], datos[2], datos[3], datos[4]});
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
